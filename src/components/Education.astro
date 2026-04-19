@@ -1,0 +1,169 @@
+---
+const education = [
+    {
+        period: "Settembre 2013 - Luglio 2018",
+        title: "Cuoco / Operatore dei servizi di ristorazione",
+        institution: "IPSSAR Luigi Einaudi, Lamezia Terme (IT)",
+        desc: ""
+    },
+    {
+        period: "Luglio 2013",
+        title: "Vacanze-studio",
+        institution: "Barnet college West Block - Londra, Inghilterra",
+        desc: "Ogni giornata comprendeva quattro ore di studio della lingua inglese, visite turistiche e due ore di attività sociali."
+    }
+];
+
+const courses = [
+    {
+        period: "Marzo 2016",
+        title: "Barman / Bartender / Flair",
+        desc: "Corso di formazione sulla preparazione e il servizio dei cocktail e delle bevande alcoliche e non"
+    },
+    {
+        period: "Maggio 2016",
+        title: "HACCP",
+        desc: "Corso di formazione per l’applicazione delle norme UNI ENI ISO e nozioni di base dell'HACCP"
+    },
+    {
+        period: "Maggio 2017",
+        title: "Orogel",
+        desc: "Legumi surgelati; Tecniche di coltura, stagionalità della produzione, processi di trattamento industriali"
+    }
+];
+
+const certificates = [
+    {
+        period: "Novembre 2016",
+        title: "Cambridge B1",
+        desc: "Certification Primary English Test (B1) Cambridge University ESOL International"
+    },
+    {
+        period: "Marzo 2022",
+        title: "System Administrator",
+        desc: "Tecnico in carica dell’installazione, della configurazione e della riparazione delle risorse informatiche"
+    },
+    {
+        period: "Aprile 2021",
+        title: "Pekit Expert",
+        desc: "Corso di formazione sulle competenze digitali. Utilizzo del computer, suite Office."
+    },
+    {
+        period: "Marzo 2021",
+        title: "Dattilografia",
+        desc: "Corso di formazione riguardante la dattilografia e la scrittura a macchina/computer."
+    },
+    {
+        period: "",
+        title: "Cucina calda e fredda da competizione",
+        desc: ""
+    }
+];
+---
+
+<div class="education-container">
+    <section>
+        <h2>For<span class="gradient-text">mazione</span></h2>
+        <div class="grid">
+            {education.map(item => (
+                <div class="card glass">
+                    <span class="period">{item.period}</span>
+                    <h3>{item.title}</h3>
+                    <p class="inst">{item.institution}</p>
+                    {item.desc && <p class="desc">{item.desc}</p>}
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <section>
+        <h2>Co<span class="gradient-text">rsi</span></h2>
+        <div class="grid">
+            {courses.map(item => (
+                <div class="card glass">
+                    <span class="period">{item.period}</span>
+                    <h3>{item.title}</h3>
+                    <p class="desc">{item.desc}</p>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <section>
+        <h2>Certi<span class="gradient-text">ficati</span></h2>
+        <div class="grid">
+            {certificates.map(item => (
+                <div class="card glass">
+                    {item.period && <span class="period">{item.period}</span>}
+                    <h3>{item.title}</h3>
+                    {item.desc && <p class="desc">{item.desc}</p>}
+                </div>
+            ))}
+        </div>
+    </section>
+</div>
+
+<style>
+    .education-container {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        margin-top: 2rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .gradient-text {
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+        animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .period {
+        font-size: 0.85rem;
+        color: var(--accent-2);
+        font-weight: 600;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+    }
+
+    .inst {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        font-style: italic;
+        margin-bottom: 0.5rem;
+    }
+
+    .desc {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+    }
+
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>

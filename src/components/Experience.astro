@@ -1,0 +1,232 @@
+---
+const experiences = [
+    {
+        period: "Novembre 2025 - Oggi",
+        role: "Cameriere",
+        company: "Ristorante “La Griglia”",
+        location: "Taverne (TI), Svizzera",
+        desc: ""
+    },
+    {
+        period: "Maggio 2025 - Settembre 2025",
+        role: "Cameriere",
+        company: "Ristorante “Les Arsenaux”",
+        location: "Fribourg (FR), Svizzera",
+        desc: ""
+    },
+    {
+        period: "Marzo 2025 - Maggio 2025",
+        role: "Cameriere",
+        company: "Ristorante “DaVinci”",
+        location: "Fribourg (FR), Svizzera",
+        desc: ""
+    },
+    {
+        period: "Ottobre 2024 - Aprile 2025",
+        role: "Postino",
+        company: "LaPoste Suisse SA",
+        location: "Fribourg (FR), Svizzera",
+        desc: ""
+    },
+    {
+        period: "Marzo 2023 - Agosto 2024",
+        role: "Barista/Cameriere",
+        company: "Ristorante “Solemio” Italpla Sàrl",
+        location: "Fribourg (FR), Svizzera",
+        desc: ""
+    },
+    {
+        period: "Giugno 2022 - Settembre 2022",
+        role: "Barista/Cameriere",
+        company: "Gruppo Leardini",
+        location: "Riccione (RI), Italia",
+        desc: "Ristorante “Sestopiano” e hotel “Lungomare”. Ho anche lavorato in tutti gli altri ristoranti del Gruppo Leardini: Hotel WE.ME., ristorante Settimopiano, Hotel MonChéri, Hotel Maestrale, Lido sulla spiaggia “Le Palme 88-89”"
+    },
+    {
+        period: "Maggio 2022",
+        role: "Barista/Cameriere",
+        company: "Umami Bistrot",
+        location: "Lamezia Terme (CZ), Italia",
+        desc: ""
+    },
+    {
+        period: "Agosto 2021 - Settembre 2021",
+        role: "Barista/Cameriere",
+        company: "Caffe-Gelateria “La Pantera Rosa”",
+        location: "Gizzeria Lido (CZ), Italia",
+        desc: ""
+    },
+    {
+        period: "Luglio 2021",
+        role: "Cuoco",
+        company: "Ristorante “Il Quadrifoglio”",
+        location: "Lamezia Terme (CZ), Italia",
+        desc: ""
+    },
+    {
+        period: "Novembre 2020 - Maggio 2021",
+        role: "Elettricista",
+        company: "Presso privato",
+        location: "Lamezia Terme (CZ), Italia",
+        desc: ""
+    },
+    {
+        period: "Giugno 2017 - Agosto 2017",
+        role: "Cuoco",
+        company: "Ristorante Italiano “Hexenweier” nell’hotel “Der Öschberghof”",
+        location: "Donaueschingen (VS), Germania",
+        desc: ""
+    },
+    {
+        period: "Ottobre 2016 - Novembre 2016",
+        role: "Cuoco",
+        company: "Ristorante “Il Veliero”",
+        location: "Crotone (KR), Italia",
+        desc: ""
+    },
+    {
+        period: "Giugno 2016 - Luglio 2016",
+        role: "Cuoco",
+        company: "Villaggio turistico “Trevi Village”",
+        location: "Coreca (CS), Italia",
+        desc: ""
+    },
+    {
+        period: "Ottobre 2015 - Aprile 2016",
+        role: "Cuoco",
+        company: "Ristorante “Maris”",
+        location: "Nocera (CZ), Italia",
+        desc: ""
+    }
+];
+---
+
+<section>
+    <div class="section-title">
+        <h2>Esperienze <span class="gradient-text">Professionali</span></h2>
+    </div>
+
+    <div class="timeline">
+        {experiences.map((exp, index) => (
+            <div class="timeline-item" style={`--delay: ${index * 0.1}s`}>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content glass">
+                    <span class="period">{exp.period}</span>
+                    <h3 class="role">{exp.role}</h3>
+                    <div class="company-loc">
+                        <span class="company">{exp.company}</span>
+                        <span class="dot-sep">•</span>
+                        <span class="location">{exp.location}</span>
+                    </div>
+                    {exp.desc && <p class="desc">{exp.desc}</p>}
+                </div>
+            </div>
+        ))}
+    </div>
+</section>
+
+<style>
+    section {
+        margin-top: 2rem;
+    }
+
+    .section-title h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .gradient-text {
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .timeline {
+        position: relative;
+        padding-left: 2rem;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 2px;
+        background: var(--border);
+        border-radius: 2px;
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 2.5rem;
+        animation: slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        opacity: 0;
+        animation-delay: var(--delay);
+    }
+
+    .timeline-dot {
+        position: absolute;
+        left: -2.35rem; /* Adjusted to center on the line */
+        top: 1.5rem;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 2px solid var(--accent-1);
+        z-index: 1;
+        transition: background 0.3s ease;
+    }
+
+    .timeline-item:hover .timeline-dot {
+        background: var(--accent-1);
+        box-shadow: 0 0 10px var(--accent-1);
+    }
+
+    .timeline-content {
+        padding: 1.5rem 2rem;
+    }
+
+    .period {
+        font-size: 0.9rem;
+        color: var(--accent-2);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .role {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+    }
+
+    .company-loc {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .dot-sep {
+        color: var(--border);
+    }
+
+    .desc {
+        margin-top: 1rem;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateX(-20px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+</style>

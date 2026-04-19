@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Experience from '../components/Experience.astro';
+import Education from '../components/Education.astro';
+import Skills from '../components/Skills.astro';
+---
+
+<Layout title="Simonluca Pisano - Professionista della Ristorazione">
+	<main class="container">
+		<Header />
+		
+		<div class="content-grid">
+			<div class="column left-column">
+				<Experience />
+			</div>
+			<div class="column right-column">
+				<Skills />
+				<Education />
+			</div>
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 4rem 2rem;
+	}
+	
+	.content-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 3rem;
+		margin-top: 4rem;
+	}
+	
+	@media (min-width: 900px) {
+		.content-grid {
+			grid-template-columns: 1.5fr 1fr;
+			gap: 4rem;
+		}
+	}
+	
+	.column {
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+	}
+</style>
