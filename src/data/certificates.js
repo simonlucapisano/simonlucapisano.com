@@ -11,7 +11,12 @@ export const certificates = [
         period: "Marzo 2022",
         title: "System Administrator",
         desc: "Tecnico in carica dell’installazione, della configurazione e della riparazione delle risorse informatiche",
-        image: "/assets/sysadmin-placeholder.jpg"
+        images: [
+            "/assets/SysAdmin1.jpg",
+            "/assets/SysAdmin2.jpg",
+            "/assets/SysAdmin3.jpg",
+            "/assets/SysAdmin4.jpg"
+        ]
     },
     {
         slug: "pekit-expert",

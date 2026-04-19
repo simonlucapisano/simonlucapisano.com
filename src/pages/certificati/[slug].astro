@@ -29,10 +29,25 @@ const { cert } = Astro.props;
             </div>
 
             <div class="cert-image-container glass">
-                <img src={cert.image} alt={`Certificato ${cert.title}`} class="cert-image" onerror="this.src='/assets/placeholder.jpg'" />
-                <div class="placeholder-text">
-                    [Inserisci l'immagine <strong>{cert.image.split('/').pop()}</strong> nella cartella public/assets/]
-                </div>
+                {cert.images ? (
+                    <div class="cert-gallery">
+                        {cert.images.map(img => (
+                            <div class="gallery-item">
+                                <img src={img} alt={`Pagina Certificato ${cert.title}`} class="cert-image" onerror="this.src='/assets/placeholder.jpg'" />
+                                <div class="placeholder-text gallery-placeholder">
+                                    [Inserisci l'immagine <strong>{img.split('/').pop()}</strong> nella cartella public/assets/]
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <>
+                        <img src={cert.image} alt={`Certificato ${cert.title}`} class="cert-image" onerror="this.src='/assets/placeholder.jpg'" />
+                        <div class="placeholder-text">
+                            [Inserisci l'immagine <strong>{cert.image?.split('/').pop()}</strong> nella cartella public/assets/]
+                        </div>
+                    </>
+                )}
             </div>
         </article>
     </main>
@@ -114,6 +129,28 @@ const { cert } = Astro.props;
         object-fit: contain;
         position: relative;
         z-index: 2;
+    }
+
+    .cert-gallery {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        width: 100%;
+    }
+
+    .gallery-item {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 300px;
+    }
+
+    .gallery-placeholder {
+        font-size: 1rem;
+        padding: 1.5rem;
     }
 
     /* Testo visibile solo se l'immagine non è caricata (es. display 404 block) */
