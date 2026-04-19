@@ -8,7 +8,7 @@ const languages = [
 ---
 
 <section>
-    <h2>Lin<span class="gradient-text">gue</span></h2>
+    <h2>Lingue</h2>
     
     <div class="langs-grid">
         {languages.map((lang, index) => (
@@ -28,18 +28,12 @@ const languages = [
     h2 {
         font-size: 2rem;
         margin-bottom: 1.5rem;
-    }
-
-    .gradient-text {
-        background: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: var(--accent-1);
     }
 
     .langs-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
 

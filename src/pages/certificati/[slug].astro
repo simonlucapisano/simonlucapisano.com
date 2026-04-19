@@ -1,0 +1,135 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { certificates } from '../../data/certificates.js';
+
+export function getStaticPaths() {
+    return certificates.map(cert => ({
+        params: { slug: cert.slug },
+        props: { cert },
+    }));
+}
+
+const { cert } = Astro.props;
+---
+
+<Layout title={`${cert.title} - Simonluca Pisano`}>
+    <main class="container">
+        <div class="nav-back">
+            <a href="/" class="back-link">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Torna al Curriculum
+            </a>
+        </div>
+
+        <article class="cert-page">
+            <div class="cert-header">
+                {cert.period && <span class="period">{cert.period}</span>}
+                <h1 class="title">{cert.title}</h1>
+                <p class="desc">{cert.desc}</p>
+            </div>
+
+            <div class="cert-image-container glass">
+                <img src={cert.image} alt={`Certificato ${cert.title}`} class="cert-image" onerror="this.src='/assets/placeholder.jpg'" />
+                <div class="placeholder-text">
+                    [Inserisci l'immagine <strong>{cert.image.split('/').pop()}</strong> nella cartella public/assets/]
+                </div>
+            </div>
+        </article>
+    </main>
+</Layout>
+
+<style>
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 4rem 1rem;
+    }
+
+    .nav-back {
+        margin-bottom: 3rem;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        transition: color 0.3s ease;
+    }
+
+    .back-link:hover {
+        color: var(--accent-1);
+    }
+
+    .cert-page {
+        animation: fadeIn 0.8s ease-out;
+    }
+
+    .cert-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .period {
+        font-size: 1rem;
+        color: var(--accent-2);
+        font-weight: 600;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 1rem;
+    }
+
+    .title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        color: var(--accent-1);
+        margin-bottom: 1rem;
+    }
+
+    .desc {
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .cert-image-container {
+        position: relative;
+        width: 100%;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .cert-image {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        object-fit: contain;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Testo visibile solo se l'immagine non è caricata (es. display 404 block) */
+    .placeholder-text {
+        position: absolute;
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        z-index: 1;
+        background: var(--bg);
+        padding: 2rem;
+        border-radius: 8px;
+        border: 2px dashed var(--border);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>

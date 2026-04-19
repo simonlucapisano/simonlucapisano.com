@@ -11,11 +11,17 @@ import Skills from '../components/Skills.astro';
 		<Header />
 		
 		<div class="content-grid">
+			<div class="mobile-skills">
+				<Skills />
+			</div>
+			
 			<div class="column left-column">
 				<Experience />
 			</div>
 			<div class="column right-column">
-				<Skills />
+				<div class="desktop-skills">
+					<Skills />
+				</div>
 				<Education />
 			</div>
 		</div>
@@ -24,9 +30,9 @@ import Skills from '../components/Skills.astro';
 
 <style>
 	.container {
-		max-width: 1200px;
+		max-width: 1400px;
 		margin: 0 auto;
-		padding: 4rem 2rem;
+		padding: 4rem 0.5rem;
 	}
 	
 	.content-grid {
@@ -36,10 +42,26 @@ import Skills from '../components/Skills.astro';
 		margin-top: 4rem;
 	}
 	
+	.mobile-skills {
+		display: block;
+	}
+	
+	.desktop-skills {
+		display: none;
+	}
+	
 	@media (min-width: 900px) {
 		.content-grid {
 			grid-template-columns: 1.5fr 1fr;
 			gap: 4rem;
+		}
+		
+		.mobile-skills {
+			display: none;
+		}
+		
+		.desktop-skills {
+			display: block;
 		}
 	}
 	

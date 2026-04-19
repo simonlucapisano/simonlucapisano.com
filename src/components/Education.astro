@@ -1,4 +1,6 @@
 ---
+import { certificates } from '../data/certificates.js';
+
 const education = [
     {
         period: "Settembre 2013 - Luglio 2018",
@@ -31,39 +33,11 @@ const courses = [
         desc: "Legumi surgelati; Tecniche di coltura, stagionalità della produzione, processi di trattamento industriali"
     }
 ];
-
-const certificates = [
-    {
-        period: "Novembre 2016",
-        title: "Cambridge B1",
-        desc: "Certification Primary English Test (B1) Cambridge University ESOL International"
-    },
-    {
-        period: "Marzo 2022",
-        title: "System Administrator",
-        desc: "Tecnico in carica dell’installazione, della configurazione e della riparazione delle risorse informatiche"
-    },
-    {
-        period: "Aprile 2021",
-        title: "Pekit Expert",
-        desc: "Corso di formazione sulle competenze digitali. Utilizzo del computer, suite Office."
-    },
-    {
-        period: "Marzo 2021",
-        title: "Dattilografia",
-        desc: "Corso di formazione riguardante la dattilografia e la scrittura a macchina/computer."
-    },
-    {
-        period: "",
-        title: "Cucina calda e fredda da competizione",
-        desc: ""
-    }
-];
 ---
 
 <div class="education-container">
     <section>
-        <h2>For<span class="gradient-text">mazione</span></h2>
+        <h2>Formazione</h2>
         <div class="grid">
             {education.map(item => (
                 <div class="card glass">
@@ -77,26 +51,30 @@ const certificates = [
     </section>
 
     <section>
-        <h2>Co<span class="gradient-text">rsi</span></h2>
+        <h2>Certificati</h2>
+        <div class="grid">
+            {certificates.map(item => (
+                <a href={`/certificati/${item.slug}`} class="card glass clickable-card">
+                    {item.period && <span class="period">{item.period}</span>}
+                    <h3>{item.title}</h3>
+                    {item.desc && <p class="desc">{item.desc}</p>}
+                    <div class="action-hint">
+                        Vedi certificato
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                </a>
+            ))}
+        </div>
+    </section>
+
+    <section>
+        <h2>Corsi</h2>
         <div class="grid">
             {courses.map(item => (
                 <div class="card glass">
                     <span class="period">{item.period}</span>
                     <h3>{item.title}</h3>
                     <p class="desc">{item.desc}</p>
-                </div>
-            ))}
-        </div>
-    </section>
-
-    <section>
-        <h2>Certi<span class="gradient-text">ficati</span></h2>
-        <div class="grid">
-            {certificates.map(item => (
-                <div class="card glass">
-                    {item.period && <span class="period">{item.period}</span>}
-                    <h3>{item.title}</h3>
-                    {item.desc && <p class="desc">{item.desc}</p>}
                 </div>
             ))}
         </div>
@@ -114,13 +92,7 @@ const certificates = [
     h2 {
         font-size: 2rem;
         margin-bottom: 1.5rem;
-    }
-
-    .gradient-text {
-        background: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: var(--accent-1);
     }
 
     .grid {
@@ -160,6 +132,46 @@ const certificates = [
         font-size: 0.95rem;
         color: var(--text-secondary);
         line-height: 1.5;
+    }
+
+    /* Stili per le card cliccabili */
+    a.clickable-card {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        border-color: var(--border);
+        transition: all 0.3s ease;
+    }
+
+    a.clickable-card:hover {
+        border-color: var(--accent-1);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+    }
+
+    a.clickable-card h3 {
+        transition: color 0.3s ease;
+    }
+
+    a.clickable-card:hover h3 {
+        color: var(--accent-1);
+    }
+
+    .action-hint {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+        color: var(--accent-1);
+        font-weight: 600;
+        font-size: 0.95rem;
+        opacity: 0.7;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    a.clickable-card:hover .action-hint {
+        opacity: 1;
+        transform: translateX(4px);
     }
 
     @keyframes slideUp {
