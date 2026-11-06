@@ -117,7 +117,7 @@ const experiences = [
 
 <section>
     <div class="section-title">
-        <h2>Esperienze Professionali</h2>
+        <h2 data-i18n="exp.title">Esperienze Professionali</h2>
     </div>
 
     <div class="timeline">
@@ -125,14 +125,14 @@ const experiences = [
             <div class="timeline-item" style={`--delay: ${index * 0.1}s`}>
                 <div class="timeline-dot"></div>
                 <div class="timeline-content glass">
-                    <span class="period">{exp.period}</span>
-                    <h3 class="role">{exp.role}</h3>
+                    <span class="period" data-i18n={`exp.${index}.period`}>{exp.period}</span>
+                    <h3 class="role" data-i18n={`exp.${index}.role`}>{exp.role}</h3>
                     <div class="company-loc">
-                        <span class="company">{exp.company}</span>
+                        <span class="company" data-i18n={`exp.${index}.company`}>{exp.company}</span>
                         <span class="dot-sep">•</span>
-                        <span class="location">{exp.location}</span>
+                        <span class="location" data-i18n={`exp.${index}.location`}>{exp.location}</span>
                     </div>
-                    {exp.desc && <p class="desc">{exp.desc}</p>}
+                    {exp.desc && <p class="desc" data-i18n={`exp.${index}.desc`}>{exp.desc}</p>}
                 </div>
             </div>
         ))}

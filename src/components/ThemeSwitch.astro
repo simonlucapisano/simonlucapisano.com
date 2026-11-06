@@ -1,84 +1,267 @@
 ---
 ---
-<div class="theme-switch-wrapper no-print">
-    <div class="theme-switch glass" role="radiogroup" aria-label="Selettore tema colore">
-        <button
-            type="button"
-            class="theme-btn"
-            role="radio"
-            aria-checked="false"
-            data-theme-value="light"
-            title="Modalità chiara"
-        >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <span>Chiaro</span>
-        </button>
+<div class="top-controls-wrapper no-print">
+    <div class="top-controls">
+        <!-- Language Globe Trigger & Popover Menu -->
+        <div class="control-item">
+            <button
+                id="lang-trigger"
+                type="button"
+                class="icon-trigger glass"
+                aria-haspopup="menu"
+                aria-expanded="false"
+                commandfor="lang-popover"
+                command="toggle-popover"
+                title="Cambia lingua"
+                data-i18n-title="controls.lang.label"
+                aria-label="Cambia lingua"
+                data-i18n-aria-label="controls.lang.label"
+            >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+                <span class="lang-code-badge" id="current-lang-badge">IT</span>
+            </button>
+            <div id="lang-popover" class="control-popover glass" popover="auto">
+                <div focusgroup="menu nomemory" aria-labelledby="lang-trigger" class="lang-menu">
+                    <div role="group" aria-label="Lingua" class="lang-group">
+                        <button type="button" role="menuitemradio" aria-checked="true" class="lang-option active" data-lang-value="it">
+                            <span class="flag-icon" aria-hidden="true">
+                                <svg width="20" height="14" viewBox="0 0 3 2"><rect width="1" height="2" x="0" fill="#009246"/><rect width="1" height="2" x="1" fill="#ffffff"/><rect width="1" height="2" x="2" fill="#ce2b37"/></svg>
+                            </span>
+                            <span class="lang-label">Italiano</span>
+                        </button>
+                        <button type="button" role="menuitemradio" aria-checked="false" class="lang-option" data-lang-value="en">
+                            <span class="flag-icon" aria-hidden="true">
+                                <svg width="20" height="14" viewBox="0 0 60 30"><clipPath id="uk-clip"><path d="M0,0 v30 h60 v-30 z"/></clipPath><g clip-path="url(#uk-clip)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="2"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
+                            </span>
+                            <span class="lang-label">English</span>
+                        </button>
+                        <button type="button" role="menuitemradio" aria-checked="false" class="lang-option" data-lang-value="de">
+                            <span class="flag-icon" aria-hidden="true">
+                                <svg width="20" height="14" viewBox="0 0 5 3"><rect width="5" height="1" y="0" fill="#000000"/><rect width="5" height="1" y="1" fill="#dd0000"/><rect width="5" height="1" y="2" fill="#ffce00"/></svg>
+                            </span>
+                            <span class="lang-label">Deutsch</span>
+                        </button>
+                        <button type="button" role="menuitemradio" aria-checked="false" class="lang-option" data-lang-value="fr">
+                            <span class="flag-icon" aria-hidden="true">
+                                <svg width="20" height="14" viewBox="0 0 3 2"><rect width="1" height="2" x="0" fill="#002395"/><rect width="1" height="2" x="1" fill="#ffffff"/><rect width="1" height="2" x="2" fill="#ed2939"/></svg>
+                            </span>
+                            <span class="lang-label">Français</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <button
-            type="button"
-            class="theme-btn"
-            role="radio"
-            aria-checked="true"
-            data-theme-value="system"
-            title="Segui impostazione di sistema"
-        >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                <line x1="8" y1="21" x2="16" y2="21"></line>
-                <line x1="12" y1="17" x2="12" y2="21"></line>
-            </svg>
-            <span>Sistema</span>
-        </button>
+        <!-- Theme Symbol Trigger & Popover with 3-way Slider -->
+        <div class="control-item">
+            <button
+                id="theme-trigger"
+                type="button"
+                class="icon-trigger glass"
+                aria-expanded="false"
+                commandfor="theme-popover"
+                command="toggle-popover"
+                title="Selettore tema colore"
+                data-i18n-title="controls.theme.label"
+                aria-label="Selettore tema colore"
+                data-i18n-aria-label="controls.theme.label"
+            >
+                <!-- Light Icon -->
+                <svg class="trigger-theme-icon icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <!-- System Icon -->
+                <svg class="trigger-theme-icon icon-system" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+                <!-- Dark Icon -->
+                <svg class="trigger-theme-icon icon-dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <div id="theme-popover" class="control-popover theme-popover-panel glass" popover="auto">
+                <div class="theme-switch" role="radiogroup" aria-labelledby="theme-trigger">
+                    <button
+                        type="button"
+                        class="theme-btn"
+                        role="radio"
+                        aria-checked="false"
+                        data-theme-value="light"
+                        title="Modalità chiara"
+                        data-i18n-title="controls.theme.light.title"
+                    >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <span data-i18n="controls.theme.light">Chiaro</span>
+                    </button>
 
-        <button
-            type="button"
-            class="theme-btn"
-            role="radio"
-            aria-checked="false"
-            data-theme-value="dark"
-            title="Modalità scura"
-        >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-            <span>Scuro</span>
-        </button>
+                    <button
+                        type="button"
+                        class="theme-btn"
+                        role="radio"
+                        aria-checked="true"
+                        data-theme-value="system"
+                        title="Segui impostazione di sistema"
+                        data-i18n-title="controls.theme.system.title"
+                    >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                        <span data-i18n="controls.theme.system">Sistema</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="theme-btn"
+                        role="radio"
+                        aria-checked="false"
+                        data-theme-value="dark"
+                        title="Modalità scura"
+                        data-i18n-title="controls.theme.dark.title"
+                    >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <span data-i18n="controls.theme.dark">Scuro</span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
-    const STORAGE_KEY = "color-scheme";
-    const meta = document.querySelector<HTMLMetaElement>('meta[name="color-scheme"]');
-    const buttons = document.querySelectorAll<HTMLButtonElement>(".theme-btn[data-theme-value]");
-    const systemMedia = window.matchMedia("(prefers-color-scheme: dark)");
+    import { translations } from "../data/i18n.js";
 
-    function getStoredMode(): "light" | "dark" | "system" {
+    type ThemeMode = "light" | "dark" | "system";
+    type LangCode = "it" | "en" | "de" | "fr";
+
+    const THEME_STORAGE_KEY = "color-scheme";
+    const LANG_STORAGE_KEY = "site-lang";
+
+    const meta = document.querySelector<HTMLMetaElement>('meta[name="color-scheme"]');
+    const themeTrigger = document.getElementById("theme-trigger") as HTMLButtonElement | null;
+    const themePopover = document.getElementById("theme-popover") as HTMLElement | null;
+    const themeButtons = document.querySelectorAll<HTMLButtonElement>(".theme-btn[data-theme-value]");
+
+    const langTrigger = document.getElementById("lang-trigger") as HTMLButtonElement | null;
+    const langPopover = document.getElementById("lang-popover") as HTMLElement | null;
+    const langOptions = document.querySelectorAll<HTMLButtonElement>(".lang-option[data-lang-value]");
+    const langBadge = document.getElementById("current-lang-badge");
+
+    // 1. Polyfill / Fallback for Popover and Invoker Commands
+    if (!("popover" in HTMLElement.prototype)) {
+        import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js").catch(() => {});
+    }
+
+    const hasNativeInvokers = "commandForElement" in HTMLButtonElement.prototype;
+
+    function positionPopoverFallback(trigger: HTMLElement, popoverEl: HTMLElement) {
+        if (CSS.supports("position-area: block-end")) return;
+        const rect = trigger.getBoundingClientRect();
+        const popRect = popoverEl.getBoundingClientRect();
+        const top = rect.bottom + 8;
+        let left = rect.right - popRect.width;
+        if (left < 8) left = 8;
+        if (left + popRect.width > window.innerWidth - 8) {
+            left = window.innerWidth - popRect.width - 8;
+        }
+        popoverEl.style.top = `${top}px`;
+        popoverEl.style.left = `${left}px`;
+    }
+
+    function setupPopoverBinding(trigger: HTMLButtonElement | null, popoverEl: HTMLElement | null) {
+        if (!trigger || !popoverEl) return;
+
+        if (!hasNativeInvokers) {
+            trigger.addEventListener("click", (event) => {
+                event.preventDefault();
+                if (popoverEl.matches(":popover-open, .\\:popover-open")) {
+                    popoverEl.hidePopover?.();
+                } else {
+                    popoverEl.showPopover?.();
+                }
+            });
+        }
+
+        popoverEl.addEventListener("toggle", (event: any) => {
+            const isOpen = event.newState === "open";
+            trigger.setAttribute("aria-expanded", String(isOpen));
+            if (isOpen) {
+                positionPopoverFallback(trigger, popoverEl);
+            }
+        });
+    }
+
+    setupPopoverBinding(langTrigger, langPopover);
+    setupPopoverBinding(themeTrigger, themePopover);
+
+    // Focusgroup fallback for menu keyboard navigation
+    if (!("focusGroup" in HTMLElement.prototype)) {
+        document.querySelectorAll<HTMLElement>('[focusgroup~="menu"]').forEach((group) => {
+            group.setAttribute("role", "menu");
+            group.querySelectorAll<HTMLButtonElement>("button:not([role])").forEach((item) => {
+                item.setAttribute("role", "menuitem");
+            });
+            group.addEventListener(
+                "keydown",
+                (event: KeyboardEvent) => {
+                    if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;
+                    const items = [...group.querySelectorAll<HTMLButtonElement>("button")].filter(
+                        (item) => !item.disabled && item.getAttribute("aria-disabled") !== "true"
+                    );
+                    const current = items.indexOf(document.activeElement as HTMLButtonElement);
+                    if (current < 0) return;
+                    const next =
+                        event.key === "Home"
+                            ? 0
+                            : event.key === "End"
+                              ? items.length - 1
+                              : (current + (event.key === "ArrowUp" ? -1 : 1) + items.length) % items.length;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    items[next]?.focus({ preventScroll: true });
+                },
+                true
+            );
+        });
+    }
+
+    // 2. Theme Management
+    function getStoredTheme(): ThemeMode {
         try {
-            const val = localStorage.getItem(STORAGE_KEY);
+            const val = localStorage.getItem(THEME_STORAGE_KEY);
             if (val === "light" || val === "dark") return val;
         } catch {}
         return "system";
     }
 
-    function updateSystemLabel() {
-        const sysBtn = document.querySelector<HTMLButtonElement>('.theme-btn[data-theme-value="system"]');
-        if (sysBtn) {
-            const currentSys = systemMedia.matches ? "scuro" : "chiaro";
-            sysBtn.title = `Segui impostazione di sistema (attuale: ${currentSys})`;
-        }
-    }
-
-    function applyMode(mode: "light" | "dark" | "system", persist = true) {
+    function applyTheme(mode: ThemeMode, persist = true) {
         if (meta) {
             meta.content = mode === "system" ? "light dark" : mode;
         }
@@ -86,45 +269,112 @@
         if (persist) {
             try {
                 if (mode === "system") {
-                    localStorage.removeItem(STORAGE_KEY);
+                    localStorage.removeItem(THEME_STORAGE_KEY);
                 } else {
-                    localStorage.setItem(STORAGE_KEY, mode);
+                    localStorage.setItem(THEME_STORAGE_KEY, mode);
                 }
             } catch {}
         }
 
-        buttons.forEach((btn) => {
+        if (themeTrigger) {
+            themeTrigger.dataset.currentTheme = mode;
+        }
+
+        themeButtons.forEach((btn) => {
             const isActive = btn.dataset.themeValue === mode;
             btn.setAttribute("aria-checked", String(isActive));
             btn.classList.toggle("active", isActive);
         });
-
-        updateSystemLabel();
     }
 
-    buttons.forEach((btn) => {
+    themeButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
-            const value = btn.dataset.themeValue as "light" | "dark" | "system";
-            applyMode(value, true);
+            const value = btn.dataset.themeValue as ThemeMode;
+            applyTheme(value, true);
+        });
+    });
+
+    // 3. Language Management (IT, EN, DE, FR)
+    function getStoredLang(): LangCode {
+        try {
+            const val = localStorage.getItem(LANG_STORAGE_KEY);
+            if (val === "it" || val === "en" || val === "de" || val === "fr") return val;
+        } catch {}
+        return "it";
+    }
+
+    function applyLanguage(lang: LangCode, persist = true) {
+        const dict = translations[lang] || translations.it;
+
+        document.documentElement.lang = lang;
+
+        if (persist) {
+            try {
+                localStorage.setItem(LANG_STORAGE_KEY, lang);
+            } catch {}
+        }
+
+        if (langBadge) {
+            langBadge.textContent = lang.toUpperCase();
+        }
+
+        langOptions.forEach((opt) => {
+            const isSelected = opt.dataset.langValue === lang;
+            opt.setAttribute("aria-checked", String(isSelected));
+            opt.classList.toggle("active", isSelected);
+        });
+
+        // Update all text elements with data-i18n
+        document.querySelectorAll<HTMLElement>("[data-i18n]").forEach((el) => {
+            const key = el.dataset.i18n;
+            if (key && key in dict) {
+                el.textContent = dict[key as keyof typeof dict];
+            }
+        });
+
+        // Update title attributes
+        document.querySelectorAll<HTMLElement>("[data-i18n-title]").forEach((el) => {
+            const key = el.dataset.i18nTitle;
+            if (key && key in dict) {
+                el.title = dict[key as keyof typeof dict];
+            }
+        });
+
+        // Update aria-label attributes
+        document.querySelectorAll<HTMLElement>("[data-i18n-aria-label]").forEach((el) => {
+            const key = el.dataset.i18nAriaLabel;
+            if (key && key in dict) {
+                el.setAttribute("aria-label", dict[key as keyof typeof dict]);
+            }
+        });
+    }
+
+    langOptions.forEach((opt) => {
+        opt.addEventListener("click", () => {
+            const lang = opt.dataset.langValue as LangCode;
+            applyLanguage(lang, true);
+            setTimeout(() => {
+                langPopover?.hidePopover?.();
+            }, 120);
         });
     });
 
     window.addEventListener("storage", (e) => {
-        if (e.key === STORAGE_KEY || e.key === null) {
-            applyMode(getStoredMode(), false);
+        if (e.key === THEME_STORAGE_KEY || e.key === null) {
+            applyTheme(getStoredTheme(), false);
+        }
+        if (e.key === LANG_STORAGE_KEY || e.key === null) {
+            applyLanguage(getStoredLang(), false);
         }
     });
 
-    systemMedia.addEventListener("change", () => {
-        updateSystemLabel();
-    });
-
-    // Initialize UI state
-    applyMode(getStoredMode(), false);
+    // Initialize state
+    applyTheme(getStoredTheme(), false);
+    applyLanguage(getStoredLang(), false);
 </script>
 
 <style>
-    .theme-switch-wrapper {
+    .top-controls-wrapper {
         display: flex;
         justify-content: flex-end;
         max-width: 1200px;
@@ -132,19 +382,187 @@
         padding: 1.25rem 1.5rem 0;
     }
 
+    .top-controls {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+    }
+
+    .control-item {
+        position: relative;
+    }
+
+    .icon-trigger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        height: 2.6rem;
+        padding: 0 0.85rem;
+        border-radius: 999px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--text-primary);
+        cursor: pointer;
+        box-shadow: var(--card-shadow);
+        font-family: inherit;
+        font-weight: 600;
+        font-size: 0.8rem;
+        transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    #theme-trigger {
+        width: 2.6rem;
+        padding: 0;
+    }
+
+    .icon-trigger:hover,
+    .icon-trigger[aria-expanded="true"] {
+        border-color: var(--accent-1);
+        color: var(--accent-1);
+        background: var(--surface-hover);
+        transform: translateY(-1px);
+    }
+
+    .lang-code-badge {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+    }
+
+    /* Show only the icon matching the active theme mode on the trigger button */
+    .trigger-theme-icon {
+        display: none;
+    }
+
+    #theme-trigger[data-current-theme="light"] .icon-light,
+    #theme-trigger[data-current-theme="system"] .icon-system,
+    #theme-trigger[data-current-theme="dark"] .icon-dark,
+    #theme-trigger:not([data-current-theme]) .icon-system {
+        display: block;
+    }
+
+    /* Popover Panels */
+    .control-popover {
+        padding: 0.4rem;
+        border-radius: 16px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+        color: var(--text-primary);
+        z-index: 100;
+    }
+
+    .control-popover:hover {
+        transform: none;
+        background: var(--bg);
+    }
+
+    @supports (position-area: block-end) {
+        .control-popover {
+            position-area: block-end span-inline-start;
+            position-try-fallbacks: flip-inline, flip-block;
+            inset: auto;
+            margin: 0.5rem 0 0 0;
+        }
+    }
+
+    @supports not (position-area: block-end) {
+        .control-popover {
+            position: fixed;
+            inset: auto;
+            margin: 0;
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .control-popover {
+            opacity: 0;
+            translate: 0 -0.25rem;
+            transition: opacity 0.15s ease, translate 0.15s ease, display 0.15s allow-discrete, overlay 0.15s allow-discrete;
+        }
+
+        .control-popover:is(:popover-open, .\:popover-open) {
+            opacity: 1;
+            translate: 0 0;
+            transition-duration: 0.1s;
+            @starting-style {
+                opacity: 0;
+                translate: 0 -0.25rem;
+            }
+        }
+    }
+
+    /* Language Menu Items */
+    .lang-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        min-width: 160px;
+    }
+
+    .lang-option {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        width: 100%;
+        padding: 0.55rem 0.75rem;
+        border: none;
+        border-radius: 10px;
+        background: transparent;
+        color: var(--text-primary);
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        text-align: left;
+        transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .lang-option::before {
+        content: "";
+        flex: none;
+        inline-size: 1rem;
+        font-weight: 700;
+        color: var(--accent-1);
+    }
+
+    .lang-option[aria-checked="true"]::before {
+        content: "✓";
+    }
+
+    .lang-option:hover,
+    .lang-option:focus-visible {
+        background: rgba(59, 130, 246, 0.1);
+        color: var(--accent-1);
+        outline: none;
+    }
+
+    .lang-option.active {
+        font-weight: 700;
+        color: var(--accent-1);
+    }
+
+    .flag-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 2px;
+        overflow: hidden;
+        box-shadow: 0 0 0 1px rgba(128, 128, 128, 0.2);
+        flex-shrink: 0;
+    }
+
+    /* Theme 3-way Segmented Slider inside Popover */
+    .theme-popover-panel {
+        border-radius: 999px;
+        padding: 0.3rem;
+    }
+
     .theme-switch {
         display: inline-flex;
         align-items: center;
         gap: 0.25rem;
-        padding: 0.3rem;
-        border-radius: 999px;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        box-shadow: var(--card-shadow);
-    }
-
-    .theme-switch:hover {
-        transform: none;
     }
 
     .theme-btn {
@@ -160,6 +578,7 @@
         font-size: 0.85rem;
         font-weight: 600;
         cursor: pointer;
+        white-space: nowrap;
         transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
     }
 
@@ -171,16 +590,5 @@
         background: var(--accent-gradient);
         color: #ffffff;
         box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
-    }
-
-    @media (max-width: 480px) {
-        .theme-switch-wrapper {
-            justify-content: center;
-        }
-
-        .theme-btn {
-            padding: 0.4rem 0.7rem;
-            font-size: 0.8rem;
-        }
     }
 </style>

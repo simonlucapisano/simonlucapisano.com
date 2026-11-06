@@ -20,29 +20,29 @@ const education = [
 
 <div class="education-container">
     <section>
-        <h2>Formazione</h2>
+        <h2 data-i18n="edu.title">Formazione</h2>
         <div class="grid">
-            {education.map(item => (
+            {education.map((item, index) => (
                 <div class="card glass">
-                    <span class="period">{item.period}</span>
-                    <h3>{item.title}</h3>
-                    <p class="inst">{item.institution}</p>
-                    {item.desc && <p class="desc">{item.desc}</p>}
+                    <span class="period" data-i18n={`edu.${index}.period`}>{item.period}</span>
+                    <h3 data-i18n={`edu.${index}.title`}>{item.title}</h3>
+                    <p class="inst" data-i18n={`edu.${index}.institution`}>{item.institution}</p>
+                    {item.desc && <p class="desc" data-i18n={`edu.${index}.desc`}>{item.desc}</p>}
                 </div>
             ))}
         </div>
     </section>
 
     <section id="certificati">
-        <h2>Certificati</h2>
+        <h2 data-i18n="cert.sectionTitle">Certificati</h2>
         <div class="grid">
             {certificates.map(item => (
                 <a href={`/certificati/${item.slug}`} class="card glass clickable-card">
-                    {item.period && <span class="period">{item.period}</span>}
-                    <h3>{item.title}</h3>
-                    {item.desc && <p class="desc">{item.desc}</p>}
+                    {item.period && <span class="period" data-i18n={`cert.${item.slug}.period`}>{item.period}</span>}
+                    <h3 data-i18n={`cert.${item.slug}.title`}>{item.title}</h3>
+                    {item.desc && <p class="desc" data-i18n={`cert.${item.slug}.desc`}>{item.desc}</p>}
                     <div class="action-hint">
-                        Vedi certificato
+                        <span data-i18n="cert.viewAction">Vedi certificato</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </div>
                 </a>
@@ -51,15 +51,15 @@ const education = [
     </section>
 
     <section>
-        <h2>Corsi</h2>
+        <h2 data-i18n="course.sectionTitle">Corsi</h2>
         <div class="grid">
             {courses.map(item => (
                 <a href={`/corsi/${item.slug}`} class="card glass clickable-card">
-                    <span class="period">{item.period}</span>
-                    <h3>{item.title}</h3>
-                    <p class="desc">{item.desc}</p>
+                    <span class="period" data-i18n={`course.${item.slug}.period`}>{item.period}</span>
+                    <h3 data-i18n={`course.${item.slug}.title`}>{item.title}</h3>
+                    <p class="desc" data-i18n={`course.${item.slug}.desc`}>{item.desc}</p>
                     <div class="action-hint">
-                        Vedi corso
+                        <span data-i18n="course.viewAction">Vedi corso</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </div>
                 </a>

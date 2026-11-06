@@ -8,13 +8,13 @@ const languages = [
 ---
 
 <section>
-    <h2>Lingue</h2>
+    <h2 data-i18n="skills.title">Lingue</h2>
     
     <div class="langs-grid">
         {languages.map((lang, index) => (
             <div class="lang-item glass" style={`--delay: ${index * 0.1}s`}>
-                <span class="lang-name">{lang.name}</span>
-                <span class="lang-level">{lang.level}</span>
+                <span class="lang-name" data-i18n={`skills.lang.${index}.name`}>{lang.name}</span>
+                <span class="lang-level" data-i18n={`skills.lang.${index}.level`}>{lang.level}</span>
             </div>
         ))}
     </div>
