@@ -60,7 +60,7 @@
         margin-bottom: 2rem;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 768px), print {
         .header-top {
             display: grid;
             grid-template-columns: 35% 65%;
@@ -167,7 +167,8 @@
         color: var(--text-primary);
         text-decoration: none;
         padding: 0.8rem 1.8rem;
-        background: rgba(255, 255, 255, 0.05);
+        background: var(--surface);
+        box-shadow: var(--card-shadow);
         border-radius: 30px;
         border: 1px solid var(--border);
         transition: all 0.3s ease;

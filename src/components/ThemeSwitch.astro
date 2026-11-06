@@ -1,0 +1,186 @@
+---
+---
+<div class="theme-switch-wrapper no-print">
+    <div class="theme-switch glass" role="radiogroup" aria-label="Selettore tema colore">
+        <button
+            type="button"
+            class="theme-btn"
+            role="radio"
+            aria-checked="false"
+            data-theme-value="light"
+            title="Modalità chiara"
+        >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <span>Chiaro</span>
+        </button>
+
+        <button
+            type="button"
+            class="theme-btn"
+            role="radio"
+            aria-checked="true"
+            data-theme-value="system"
+            title="Segui impostazione di sistema"
+        >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span>Sistema</span>
+        </button>
+
+        <button
+            type="button"
+            class="theme-btn"
+            role="radio"
+            aria-checked="false"
+            data-theme-value="dark"
+            title="Modalità scura"
+        >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span>Scuro</span>
+        </button>
+    </div>
+</div>
+
+<script>
+    const STORAGE_KEY = "color-scheme";
+    const meta = document.querySelector<HTMLMetaElement>('meta[name="color-scheme"]');
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".theme-btn[data-theme-value]");
+    const systemMedia = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function getStoredMode(): "light" | "dark" | "system" {
+        try {
+            const val = localStorage.getItem(STORAGE_KEY);
+            if (val === "light" || val === "dark") return val;
+        } catch {}
+        return "system";
+    }
+
+    function updateSystemLabel() {
+        const sysBtn = document.querySelector<HTMLButtonElement>('.theme-btn[data-theme-value="system"]');
+        if (sysBtn) {
+            const currentSys = systemMedia.matches ? "scuro" : "chiaro";
+            sysBtn.title = `Segui impostazione di sistema (attuale: ${currentSys})`;
+        }
+    }
+
+    function applyMode(mode: "light" | "dark" | "system", persist = true) {
+        if (meta) {
+            meta.content = mode === "system" ? "light dark" : mode;
+        }
+
+        if (persist) {
+            try {
+                if (mode === "system") {
+                    localStorage.removeItem(STORAGE_KEY);
+                } else {
+                    localStorage.setItem(STORAGE_KEY, mode);
+                }
+            } catch {}
+        }
+
+        buttons.forEach((btn) => {
+            const isActive = btn.dataset.themeValue === mode;
+            btn.setAttribute("aria-checked", String(isActive));
+            btn.classList.toggle("active", isActive);
+        });
+
+        updateSystemLabel();
+    }
+
+    buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const value = btn.dataset.themeValue as "light" | "dark" | "system";
+            applyMode(value, true);
+        });
+    });
+
+    window.addEventListener("storage", (e) => {
+        if (e.key === STORAGE_KEY || e.key === null) {
+            applyMode(getStoredMode(), false);
+        }
+    });
+
+    systemMedia.addEventListener("change", () => {
+        updateSystemLabel();
+    });
+
+    // Initialize UI state
+    applyMode(getStoredMode(), false);
+</script>
+
+<style>
+    .theme-switch-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1.25rem 1.5rem 0;
+    }
+
+    .theme-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.3rem;
+        border-radius: 999px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        box-shadow: var(--card-shadow);
+    }
+
+    .theme-switch:hover {
+        transform: none;
+    }
+
+    .theme-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.45rem 0.85rem;
+        border: none;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--text-secondary);
+        font-family: inherit;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .theme-btn:hover {
+        color: var(--text-primary);
+    }
+
+    .theme-btn.active {
+        background: var(--accent-gradient);
+        color: #ffffff;
+        box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+    }
+
+    @media (max-width: 480px) {
+        .theme-switch-wrapper {
+            justify-content: center;
+        }
+
+        .theme-btn {
+            padding: 0.4rem 0.7rem;
+            font-size: 0.8rem;
+        }
+    }
+</style>

@@ -1,4 +1,6 @@
 ---
+import ThemeSwitch from '../components/ThemeSwitch.astro';
+
 interface Props {
 	title: string;
 }
@@ -12,6 +14,12 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="description" content="Simonluca Pisano - Professionista della Ristorazione" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="color-scheme" content="light dark" />
+		<script is:inline>
+			try {
+				document.querySelector('meta[name="color-scheme"]').content = localStorage.getItem("color-scheme") ?? "light dark";
+			} catch {}
+		</script>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,20 +30,94 @@ const { title } = Astro.props;
 	<body>
 		<div class="glow-bg glow-bg-1"></div>
 		<div class="glow-bg glow-bg-2"></div>
+		<ThemeSwitch />
 		<slot />
 	</body>
 </html>
 <style is:global>
 	:root {
-		--bg: #0a0a0a;
-		--surface: rgba(255, 255, 255, 0.02);
-		--surface-hover: rgba(255, 255, 255, 0.05);
-		--border: rgba(255, 255, 255, 0.08);
-		--text-primary: #f8fafc;
-		--text-secondary: #94a3b8;
-		--accent-1: #3b82f6;
-		--accent-2: #8b5cf6;
+		--bg-light: #f8fafc;
+		--bg-dark: #0a0a0a;
+		--surface-light: rgba(255, 255, 255, 0.85);
+		--surface-dark: rgba(255, 255, 255, 0.02);
+		--surface-hover-light: rgba(255, 255, 255, 0.98);
+		--surface-hover-dark: rgba(255, 255, 255, 0.05);
+		--border-light: rgba(15, 23, 42, 0.12);
+		--border-dark: rgba(255, 255, 255, 0.08);
+		--text-primary-light: #0f172a;
+		--text-primary-dark: #f8fafc;
+		--text-secondary-light: #475569;
+		--text-secondary-dark: #94a3b8;
+		--accent-1-light: #2563eb;
+		--accent-1-dark: #3b82f6;
+		--accent-2-light: #7c3aed;
+		--accent-2-dark: #8b5cf6;
+		--card-shadow-light: 0 4px 20px rgba(15, 23, 42, 0.06);
+		--card-shadow-dark: 0 4px 20px rgba(0, 0, 0, 0.25);
+
+		/* Fallback for browsers without light-dark() support */
+		--bg: var(--bg-light);
+		--surface: var(--surface-light);
+		--surface-hover: var(--surface-hover-light);
+		--border: var(--border-light);
+		--text-primary: var(--text-primary-light);
+		--text-secondary: var(--text-secondary-light);
+		--accent-1: var(--accent-1-light);
+		--accent-2: var(--accent-2-light);
+		--card-shadow: var(--card-shadow-light);
+
+		@media (prefers-color-scheme: dark) {
+			--bg: var(--bg-dark);
+			--surface: var(--surface-dark);
+			--surface-hover: var(--surface-hover-dark);
+			--border: var(--border-dark);
+			--text-primary: var(--text-primary-dark);
+			--text-secondary: var(--text-secondary-dark);
+			--accent-1: var(--accent-1-dark);
+			--accent-2: var(--accent-2-dark);
+			--card-shadow: var(--card-shadow-dark);
+		}
+
+		@supports (color: light-dark(white, black)) {
+			--bg: light-dark(var(--bg-light), var(--bg-dark));
+			--surface: light-dark(var(--surface-light), var(--surface-dark));
+			--surface-hover: light-dark(var(--surface-hover-light), var(--surface-hover-dark));
+			--border: light-dark(var(--border-light), var(--border-dark));
+			--text-primary: light-dark(var(--text-primary-light), var(--text-primary-dark));
+			--text-secondary: light-dark(var(--text-secondary-light), var(--text-secondary-dark));
+			--accent-1: light-dark(var(--accent-1-light), var(--accent-1-dark));
+			--accent-2: light-dark(var(--accent-2-light), var(--accent-2-dark));
+		}
+
 		--accent-gradient: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 100%);
+
+		color-scheme: light dark;
+
+		&:has(> head > meta[name="color-scheme"][content="dark"]) {
+			color-scheme: dark;
+			--bg: var(--bg-dark);
+			--surface: var(--surface-dark);
+			--surface-hover: var(--surface-hover-dark);
+			--border: var(--border-dark);
+			--text-primary: var(--text-primary-dark);
+			--text-secondary: var(--text-secondary-dark);
+			--accent-1: var(--accent-1-dark);
+			--accent-2: var(--accent-2-dark);
+			--card-shadow: var(--card-shadow-dark);
+		}
+
+		&:has(> head > meta[name="color-scheme"][content="light"]) {
+			color-scheme: light;
+			--bg: var(--bg-light);
+			--surface: var(--surface-light);
+			--surface-hover: var(--surface-hover-light);
+			--border: var(--border-light);
+			--text-primary: var(--text-primary-light);
+			--text-secondary: var(--text-secondary-light);
+			--accent-1: var(--accent-1-light);
+			--accent-2: var(--accent-2-light);
+			--card-shadow: var(--card-shadow-light);
+		}
 	}
 
 	* {
@@ -51,6 +133,7 @@ const { title } = Astro.props;
 		line-height: 1.6;
 		overflow-x: hidden;
 		position: relative;
+		transition: background-color 0.25s ease, color 0.25s ease;
 	}
 
 	.glow-bg {
@@ -99,11 +182,55 @@ const { title } = Astro.props;
 		border: 1px solid var(--border);
 		border-radius: 20px;
 		padding: 2rem;
-		transition: transform 0.3s ease, background 0.3s ease;
+		box-shadow: var(--card-shadow);
+		transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 	}
 
-    .glass:hover {
-        background: var(--surface-hover);
-        transform: translateY(-2px);
-    }
+	.glass:hover {
+		background: var(--surface-hover);
+		transform: translateY(-2px);
+	}
+
+	@media print {
+		@page {
+			size: A4;
+			margin: 10mm;
+		}
+
+		.no-print {
+			display: none !important;
+		}
+
+		body {
+			-webkit-print-color-adjust: exact;
+			print-color-adjust: exact;
+		}
+
+		main.container {
+			padding: 1rem 0.5rem !important;
+		}
+
+		*,
+		*::before,
+		*::after {
+			animation: none !important;
+			transition: none !important;
+		}
+
+		h1, h2, h3, .section-title {
+			break-after: avoid;
+			page-break-after: avoid;
+		}
+
+		.timeline-item,
+		.lang-item,
+		.langs-grid,
+		.card,
+		.header {
+			opacity: 1 !important;
+			transform: none !important;
+			break-inside: avoid;
+			page-break-inside: avoid;
+		}
+	}
 </style>
